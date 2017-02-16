@@ -50,5 +50,30 @@ public class Lexer {
 		}
 	}
 	
+	//check if the next char in the buffered stream is an operator
+	//returns 1 if the next character in the buffer is an operator
+	//returns 2 if the next character is a /, indicating a comment
+	//otherwise returns 0 if 
+	public int nextChar() throws IOException
+	{
+		
+		file.mark(BUFFER_MARK);
+		char val = (char) file.read();
+		
+		if(Token.isOp(val))
+		{
+			return 1;
+		}
+		if(val == '/')
+		{
+			return 2;
+		}
+		
+		file.reset(); //reset buffer back to original spot
+		return 0;
+		
+		
+	}
+	
 	
 }
