@@ -1,15 +1,5 @@
 
 public class Token {
-
-	public enum TOKENS{
-		IDENT("Identifier"), ASSIGN("Assignment p"), SUB_OP("Subtraction op"), ADD_OP("Addition Op");
-		private String token;
-		
-		private TOKENS(String token){
-			this.token = token;
-		}
-	}
-	TOKENS a = TOKENS.IDENT;
 	
 	final static char[] OPERATORS = {'+', '=', '-', '*', '/', '!', '<', '>'};
 	final static char[] DELIMITERS = {'(', ')', '{', '}', ']', '['};
@@ -56,6 +46,12 @@ public class Token {
 			return true;
 		}
 		return false;
+	}
+	
+	public void setKeyWordToken(String val)
+	{
+		val.toLowerCase();
+		
 	}
 
 	public void setDelToken(char val)

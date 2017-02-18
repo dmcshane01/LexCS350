@@ -35,10 +35,13 @@ public class Lexer {
 		
 		//get next char from file
 		val = (char) file.read();
+		
+		//skips all whitespace
 		while(Token.isWhiteSpace(val))
 		{
 			val = (char) file.read();
 		}
+		
 		
 		if(Token.isDel(val))
 		{
