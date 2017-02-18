@@ -3,6 +3,19 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 
+/*
+ * Output of token will be like this.
+ * Token Lexeme
+*  IDENT result
+   ASSIGN_OP =
+   IDENT oldsum
+   SUB_OP -
+   IDENT value
+   DIV_OP /
+   INT_LIT 100
+   SEMICOLON 
+ */
+
 public class Lexer {
 
 	final int BUFFER_MARK = 1000; //use .mark and .reset of buffer to move it back and forth

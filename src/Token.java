@@ -77,5 +77,23 @@ public class Token {
 	{
 		
 	}
+	
+
+/*
+ * Output of token will be like this.
+ * Token Lexeme
+*  IDENT result
+   ASSIGN_OP =
+   IDENT oldsum
+   SUB_OP -
+   IDENT value
+   DIV_OP /
+   INT_LIT 100
+   SEMICOLON 
+ */
+	public String toString()
+	{
+		
+	}
 }
 
