@@ -2,9 +2,12 @@
 public class Token {
 	
 	final static char[] OPERATORS = {'+', '=', '-', '*', '/', '!', '<', '>'};
-	final static char[] DELIMITERS = {'(', ')', '{', '}', ']', '['};
+	final static char[] DELIMITERS = {'(', ')', '{', '}', ']', '[', '"', };
 	final static String[] KEYWORDS = {"main", "end", "begin", "char", "int", "float", "if", "else", "while", "read" }; //add more 
 	
+	
+	String token;
+	String lexeme;
 	public Token()
 	{
 		
@@ -52,6 +55,16 @@ public class Token {
 	{
 		val.toLowerCase();
 		
+		for(int i = 0; i < KEYWORDS.length; i++)
+		{
+			if(KEYWORDS[i].equals(val))
+			{
+				//need to change to proper token/lexeme
+				token = val;
+				lexeme = val;
+			}
+		}
+		
 	}
 
 	public void setDelToken(char val)
@@ -89,7 +102,7 @@ public class Token {
  */
 	public String toString()
 	{
-		
+		return token + "  " + lexeme;
 	}
 }
 

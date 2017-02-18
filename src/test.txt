@@ -1,0 +1,6 @@
+main
+begin
+int num, denom, quot, rem;
+read num, denom;
+
+if denom = 0 then write ("ara")

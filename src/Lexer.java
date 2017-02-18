@@ -21,20 +21,32 @@ public class Lexer {
 	final int BUFFER_MARK = 1000; //use .mark and .reset of buffer to move it back and forth
 	BufferedReader file;
 	ArrayList<Token> tokens;
+	int eofMark = 0;
 	
 	public Lexer(BufferedReader file)
 	{
+		tokens = new ArrayList<Token>();
 		this.file = file;
+	}
+	
+	public void analyzeProgram() throws IOException
+	{
+		while(eofMark != 65535)
+		{
+			tokens.add(nextToken());
+		}
 	}
 	
 	public  Token nextToken() throws IOException
 	{
 		String temp = "";
 		char val;
-		Token curr;
+		Token curr = null;
 		
 		//get next char from file
 		val = (char) file.read();
+		eofMark = (int) val;
+		System.out.println(eofMark);
 		
 		//skips all whitespace
 		while(Token.isWhiteSpace(val))
@@ -87,7 +99,10 @@ public class Lexer {
 				temp += val;
 				val = (char) file.read();
 			}
+			
+			
 		}
+		return curr;
 	}
 	
 	//check if the next char in the buffered stream is an operator
@@ -116,6 +131,14 @@ public class Lexer {
 		return 0;
 		
 		
+	}
+	
+	public void outputTokens()
+	{
+		for(int i = 0; i < tokens.size() - 1; i++)
+		{
+			System.out.println(tokens.get(i).toString());
+		}
 	}
 	
 	
