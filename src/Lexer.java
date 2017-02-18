@@ -41,7 +41,7 @@ public class Lexer {
 	{
 		String temp = "";
 		char val;
-		Token curr = null;
+		Token curr = new Token();
 		
 		//get next char from file
 		val = (char) file.read();
@@ -57,13 +57,13 @@ public class Lexer {
 		
 		if(Token.isDel(val))
 		{
-			curr = new Token();
+			
 			curr.setDelToken(val);
 			return curr;
 		}
 		else if(Token.isOp(val)) //need to check if its a negative number or a double symbol op(!=, >=, etc)
 		{
-			curr = new Token();
+			
 			
 			//if the next character is an operator, we check to see if its a logical operator that has 2 chars
 			//if it is, appen both to an empty string
@@ -82,6 +82,7 @@ public class Lexer {
 		}
 		else if(Character.isDigit(val)) //need to check for floats, etc
 		{
+			
 			temp += val;
 			val = (char) file.read();
 			while(Character.isDigit(val))
@@ -91,6 +92,7 @@ public class Lexer {
 		}
 		else if(Character.isAlphabetic(val))
 		{
+		
 			temp += val;
 			val = (char) file.read();
 			

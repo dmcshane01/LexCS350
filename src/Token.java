@@ -62,6 +62,7 @@ public class Token {
 				//need to change to proper token/lexeme
 				token = val;
 				lexeme = val;
+				System.out.println(token);
 			}
 		}
 		
