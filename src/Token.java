@@ -13,7 +13,7 @@ public class Token {
 	
 	final static char[] OPERATORS = {'+', '=', '-', '*', '/', '!', '<', '>'};
 	final static char[] DELIMITERS = {'(', ')', '{', '}', ']', '['};
-	final static String[] KEYWORDS = {"main", "end", "begin"}; //add more 
+	final static String[] KEYWORDS = {"main", "end", "begin", "char", "int", "float", "if", "else", "while", "read" }; //add more 
 	
 	public Token()
 	{
@@ -64,6 +64,11 @@ public class Token {
 	}
 	
 	public void setOpToken(char val)
+	{
+		
+	}
+	
+	public void setOpToken(String val)
 	{
 		
 	}
