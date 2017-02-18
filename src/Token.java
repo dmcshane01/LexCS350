@@ -6,8 +6,8 @@ public class Token {
 	final static String[] KEYWORDS = {"main", "end", "begin", "char", "int", "float", "if", "else", "while", "read" }; //add more 
 	
 	
-	String token;
-	String lexeme;
+	String token = "";
+	String lexeme = "";
 	public Token()
 	{
 		
@@ -66,25 +66,54 @@ public class Token {
 		}
 		
 	}
-
+	
 	public void setDelToken(char val)
 	{
-		//todo
+		for(int i = 0; i < DELIMITERS.length; i++)
+		{
+			if(DELIMITERS[i] == val)
+			{
+				//need to change to proper token/lexeme
+				token += val;
+				lexeme += val;
+			}
+		}
 	}
 	
 	public void setOpToken(char val)
 	{
-		
+		for(int i = 0; i < OPERATORS.length; i++)
+		{
+			if(OPERATORS[i] == val)
+			{
+				//need to change to proper token/lexeme
+				token += val;
+				lexeme += val;
+			}
+		}
 	}
 	
+	
+	/*TODO
 	public void setOpToken(String val)
 	{
-		
+
+		for(int i = 0; i < OPERATORS.length; i++)
+		{
+			if(OPERATORS[i].equals(val))
+			{
+				//need to change to proper token/lexeme
+				token = val;
+				lexeme = val;
+			}
+		}
 	}
+	*/
 	
-	public void setNumToken(String cal)
+	public void setNumToken(String val)
 	{
-		
+		token = val;
+		lexeme = val;
 	}
 	
 

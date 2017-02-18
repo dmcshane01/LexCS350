@@ -71,7 +71,7 @@ public class Lexer {
 			{
 				temp += val;
 				temp += file.read();
-				curr.setOpToken(temp);
+				//curr.setOpToken(temp);
 			}
 			else if(nextChar() == 3)
 			{
@@ -135,6 +135,7 @@ public class Lexer {
 	
 	public void outputTokens()
 	{
+		System.out.println(tokens.get(0).toString());
 		for(int i = 0; i < tokens.size() - 1; i++)
 		{
 			System.out.println(tokens.get(i).toString());
