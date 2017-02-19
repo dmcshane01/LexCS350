@@ -46,7 +46,6 @@ public class Lexer {
 		//get next char from file
 		val = (char) file.read();
 		eofMark = (int) val;
-		System.out.println(eofMark);
 		
 		//skips all whitespace
 		while(Token.isWhiteSpace(val))
@@ -57,6 +56,15 @@ public class Lexer {
 		
 		if(Token.isDel(val))
 		{
+			if(val == '"')
+			{
+				temp += val;
+				val = (char) file.read();
+				while(val != '"')
+				{
+					temp += val;
+				}
+			}
 			
 			curr.setDelToken(val);
 			return curr;
@@ -70,15 +78,14 @@ public class Lexer {
 			if(nextChar() == 1)
 			{
 				temp += val;
-				temp += file.read();
-				//curr.setOpToken(temp);
+				temp += (char) file.read();
+				curr.setOpToken(temp);
 			}
-			else if(nextChar() == 3)
+			else
 			{
-				
-			}
 			curr.setOpToken(val);
 			return curr;
+			}
 		}
 		else if(Character.isDigit(val)) //need to check for floats, etc
 		{
@@ -100,13 +107,11 @@ public class Lexer {
 			{
 				val = (char) file.read();
 				temp += val;
-				System.out.println(temp);
 			}
 			
 			
 		}
 		curr.setKeyWordToken(temp);
-		System.out.println(":" + temp + ":");
 		return curr;
 	}
 	
@@ -145,7 +150,7 @@ public class Lexer {
 	
 	public void outputTokens()
 	{
-		System.out.println(tokens.get(0).toString());
+	
 		for(int i = 0; i < tokens.size() - 1; i++)
 		{
 			System.out.println(tokens.get(i).toString());

@@ -2,7 +2,7 @@
 public class Token {
 	
 	final static char[] OPERATORS = {'+', '=', '-', '*', '/', '!', '<', '>'};
-	final static char[] DELIMITERS = {'(', ')', '{', '}', ']', '[', '"', };
+	final static char[] DELIMITERS = {'(', ')', '{', '}', ']', '[', '"',',' };
 	final static String[] KEYWORDS = {"main", "end", "begin", "char", "int", "float", "if", "else", "while", "read" }; //add more 
 	
 	
@@ -62,7 +62,7 @@ public class Token {
 				//need to change to proper token/lexeme
 				token = val;
 				lexeme = val;
-				System.out.println("R");
+
 			}
 		}
 		
@@ -95,21 +95,25 @@ public class Token {
 	}
 	
 	
-	/*TODO
 	public void setOpToken(String val)
 	{
-
-		for(int i = 0; i < OPERATORS.length; i++)
+	
+			for(int i = 0; i < OPERATORS.length; i++)
 		{
-			if(OPERATORS[i].equals(val))
+			if(OPERATORS[i] == (val.charAt(1))) //check if the second char in double operator is correct
 			{
+				
 				//need to change to proper token/lexeme
 				token = val;
 				lexeme = val;
 			}
 		}
 	}
-	*/
+	
+	public void setString(String val)
+	{
+		
+	}
 	
 	public void setNumToken(String val)
 	{
