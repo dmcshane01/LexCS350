@@ -90,27 +90,30 @@ public class Lexer {
 				temp += val;
 			}
 		}
-		else if(Character.isAlphabetic(val))
+		//checks for keywords
+		else if(Character.isLetter(val))
 		{
-		
 			temp += val;
-			val = (char) file.read();
+
 			
-			while(Character.isAlphabetic(val))
+			while(nextChar() == 3)
 			{
-				temp += val;
 				val = (char) file.read();
+				temp += val;
+				System.out.println(temp);
 			}
 			
 			
 		}
+		curr.setKeyWordToken(temp);
+		System.out.println(":" + temp + ":");
 		return curr;
 	}
 	
 	//check if the next char in the buffered stream is an operator
 	//returns 1 if the next character in the buffer is an operator
 	//returns 2 if the next character is a /, indicating a comment
-	//returns 3 if the next charatcter is a digit, usually indicating a negative constant.
+	//returns 3 if the next charatcter is a letter
 	//otherwise returns 0 if 
 	public int nextChar() throws IOException
 	{
@@ -127,6 +130,11 @@ public class Lexer {
 		{
 			file.reset();
 			return 2;
+		}
+		if(Character.isLetter(val))
+		{
+			file.reset();
+			return 3;
 		}
 		
 		file.reset(); //reset buffer back to original spot
