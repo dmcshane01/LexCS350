@@ -51,9 +51,13 @@ public class Token {
 		return false;
 	}
 	
+	//checks for if a string is a keyword.
+	//if it is the key flag is set to true and we mark it as a keyword
+	//if it is not then it is treated as identifier
 	public void setKeyWordToken(String val)
 	{
 		val.toLowerCase();
+		boolean key = false;
 		
 		for(int i = 0; i < KEYWORDS.length; i++)
 		{
@@ -62,8 +66,15 @@ public class Token {
 				//need to change to proper token/lexeme
 				token = val;
 				lexeme = val;
+				key = true;
 
 			}
+		}
+		
+		if(!key)
+		{
+			token = "Identifier";
+			lexeme = val;
 		}
 		
 	}
@@ -112,7 +123,8 @@ public class Token {
 	
 	public void setString(String val)
 	{
-		
+		token = "STRING LITERAL";
+		lexeme = val;
 	}
 	
 	public void setNumToken(String val)

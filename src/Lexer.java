@@ -63,7 +63,13 @@ public class Lexer {
 				while(val != '"')
 				{
 					temp += val;
+					val = (char) file.read();
 				}
+				
+				temp += val;
+				
+				curr.setString(temp);
+				return curr;
 			}
 			
 			curr.setDelToken(val);
