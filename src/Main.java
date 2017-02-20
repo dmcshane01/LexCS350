@@ -13,7 +13,7 @@ public class Main {
 		
 		Lexer lex = new Lexer(r);
 		lex.analyzeProgram();
-		lex.outputTokens();
+		lex.outputTokens("output.txt");
 
 	}
 

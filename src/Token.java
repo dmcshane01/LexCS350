@@ -3,7 +3,8 @@ public class Token {
 	
 	final static char[] OPERATORS = {'+', '=', '-', '*', '/', '!', '<', '>'};
 	final static char[] DELIMITERS = {'(', ')', '{', '}', ']', '[', '"',',' };
-	final static String[] KEYWORDS = {"main", "end", "begin", "char", "int", "float", "if", "else", "while", "read", "float" }; //add more 
+	final static String[] KEYWORDS = {"main","do", "end", "begin", "char", "int", "float", "if", 
+			 "else", "while", "read", "float", "for", "write" }; //add more as needed
 	
 	
 	String token = "";
@@ -13,7 +14,7 @@ public class Token {
 		
 	}
 	
-	//Return true if the char is an operator
+	//determines if a char is a valid operator char
 	public static boolean isOp(char value)
 	{
 		for(int i = 0; i < OPERATORS.length; i++)
@@ -27,7 +28,7 @@ public class Token {
 		return false;
 	}
 	
-	//returns true if the character is a delimiter
+	//determines if a char is a delimiter
 	public static boolean isDel(char value)
 	{
 		for(int i = 0; i < DELIMITERS.length; i++)
@@ -41,7 +42,7 @@ public class Token {
 		return false;
 	}
 	
-	//returns true if char is whitespace
+	//determines if a char is whitespace, such as /n /r /t
 	public static boolean isWhiteSpace(char value)
 	{
 		if(value == ' ' || value == '\n' || value == '\t')
@@ -63,14 +64,62 @@ public class Token {
 		{
 			if(KEYWORDS[i].equals(val))
 			{
-				//need to change to proper token/lexeme
-				token = val;
+				//if the string val s equal to a keyword, mark the key flag as true and find the correct token
 				lexeme = val;
 				key = true;
-
-			}
-		}
-		
+				
+				if(val.equals("main"))
+				{
+					token = "PROGRAM_START";
+				}
+				else if(val.equals("begin"))
+				{
+					token = "START_POINT";
+				}
+				else if(val.equals("end"))
+				{
+					token = "PROGRAM_END";
+				}
+				else if(val.equals("char"))
+				{
+					token = "CHAR_DEC";
+				}
+				else if(val.equals("int"))
+				{
+					token = "INT_DEC";
+				}
+				else if(val.equals("float"))
+				{
+					token = "FLOAT_DEC";
+				}
+				else if(val.equals("if"))
+				{
+					token = "IF_STMT";
+				}
+				else if(val.equals("else"))
+				{
+					token = "DO_STMT";
+				}
+				else if(val.equals("while"))
+				{
+					token = "WHILE_LOOP";
+				}
+				else if(val.equals("for"))
+				{
+					token = "FOR_LOOP";
+				}
+				else if(val.equals("read"))
+				{
+					token = "FUNC_CALL";
+				}
+				else if(val.equals("write"))
+				{
+					token = "FUNC_CALL";
+				}
+			}//end outer if
+		}//end for
+				
+		//if no keyword is found, assume that it is a variablie identifier
 		if(!key)
 		{
 			token = "Identifier";
@@ -106,6 +155,7 @@ public class Token {
 	}
 	
 	
+	//creates token for logical operators that have 2 or more chars
 	public void setOpToken(String val)
 	{
 	

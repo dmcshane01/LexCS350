@@ -1,5 +1,10 @@
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 
@@ -202,12 +207,15 @@ public class Lexer {
 		
 	}
 	
-	public void outputTokens()
+	public void outputTokens(String outputFile) throws IOException
 	{
 	
+		BufferedWriter bw = new BufferedWriter(new FileWriter("output.txt"));
 		for(int i = 0; i < tokens.size() - 1; i++)
 		{
-			System.out.println(tokens.get(i).toString());
+			System.out.println(i);
+			bw.write("test");
+			bw.write(tokens.get(i).toString());
 		}
 	}
 	
