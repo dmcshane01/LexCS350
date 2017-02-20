@@ -1,19 +1,27 @@
-
+/*
+ * Daniel DelyMcShane
+ * CS350 Prog Lang Design, Dr. Ng
+ * Feb 20, 2017
+ * Assignment 2
+ * 
+ * CLASS TOKEN:
+ * 		The Token class is used to store one token. It has static methods that determine if
+ * 		which type of token a lexeme needs to be assigned.
+ * 		
+ */
 public class Token {
 	
+	//collection of legal operators, delimters and keywords
 	final static char[] OPERATORS = {'+', '=', '-', '*', '/', '!', '<', '>'};
 	final static char[] DELIMITERS = {'(', ')', '{', '}', ']', '[', '"',',' };
 	final static String[] KEYWORDS = {"main","do", "end", "begin", "char", "int", "float", "if", 
 			 "else", "while", "read", "float", "for", "write" }; //add more as needed
 	
-	
+	//initialize token and lexeme to empty strings because I cannot get the lexical analyzer and buffered reader
+	//to read in some cases of whitespace which don't modify them if they are uninitialized and causes nullref errors
 	String token = "";
 	String lexeme = "";
-	public Token()
-	{
-		
-	}
-	
+
 	//determines if a char is a valid operator char
 	public static boolean isOp(char value)
 	{
@@ -23,7 +31,6 @@ public class Token {
 			{
 				return true;
 			}
-			
 		}
 		return false;
 	}
@@ -43,6 +50,8 @@ public class Token {
 	}
 	
 	//determines if a char is whitespace, such as /n /r /t
+	//figured out this is not need at this point in time
+	/*
 	public static boolean isWhiteSpace(char value)
 	{
 		if(Character.isWhitespace(value))
@@ -51,6 +60,7 @@ public class Token {
 		}
 		return false;
 	}
+	*/
 	
 	//checks for if a string is a keyword.
 	//if it is the key flag is set to true and we mark it as a keyword
@@ -68,6 +78,7 @@ public class Token {
 				lexeme = val;
 				key = true;
 				
+				//long if else statement, switch/case not working for strings
 				if(val.equals("main"))
 				{
 					token = "PROGRAM_START";
@@ -131,7 +142,8 @@ public class Token {
 		}
 		
 	}
-	
+
+	//sets the token for a delimeters using the ambiguous DELIMITER tag for the token name
 	public void setDelToken(char val)
 	{
 		for(int i = 0; i < DELIMITERS.length; i++)
@@ -145,10 +157,12 @@ public class Token {
 		}
 	}
 	
+	//Set the Token as an operator for single character operators
 	public void setOpToken(char val)
 	{
 		for(int i = 0; i < OPERATORS.length; i++)
 		{
+			//all cases of single char operators
 			if(OPERATORS[i] == val)
 			{
 				lexeme += val;
@@ -222,6 +236,7 @@ public class Token {
 	public void setNumToken(String val)
 	{
 	
+		//default token to INT 
 		token = "INT";
 		lexeme = val;
 		//search each char in string for a period, if so set token to FLOAT
@@ -234,25 +249,14 @@ public class Token {
 		}
 	}
 	
+	//Set token for String literal
 	public void setString(String val)
 	{
 		token = "STRING LITERAL";
 		lexeme = val;
 	}
 	
-
-/*
- * Output of token will be like this.
- * Token Lexeme
-*  IDENT result
-   ASSIGN_OP =
-   IDENT oldsum
-   SUB_OP -
-   IDENT value
-   DIV_OP /
-   INT_LIT 100
-   SEMICOLON 
- */
+	//Returns the lexeme and token as a string and formatted to appropriate column width
 	public String toString()
 	{
 		//if the lexeme or token matches case, add extra tab for consistent formatting on output

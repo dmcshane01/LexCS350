@@ -9,16 +9,14 @@ import java.util.ArrayList;
 
 
 /*
- * Output of token will be like this.
- * Token Lexeme
-*  IDENT result
-   ASSIGN_OP =
-   IDENT oldsum
-   SUB_OP -
-   IDENT value
-   DIV_OP /
-   INT_LIT 100
-   SEMICOLON 
+ * Daniel DelyMcShane
+ * CS350 Prog Lang Design, Dr. Ng
+ * Feb 20, 2017
+ * Assignment 2
+ * 	CLASS LEXER:
+ * 		The Lexer class acts as the lexical analyzer for this simple programming language
+ * 		It uses a bufferedreader in the constructor that represents the program that it is analyzing
+ * 		It reads the program char by char and creates the appropriate tokens for each terminal symbol
  */
 
 public class Lexer {
@@ -54,7 +52,7 @@ public class Lexer {
 		eofMark = (int) val;
 		
 		//skips all whitespace
-		while(Token.isWhiteSpace(val))
+		while(Character.isWhitespace(val))
 		{
 			val = (char) file.read();
 		}
