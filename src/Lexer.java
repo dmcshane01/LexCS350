@@ -1,10 +1,7 @@
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 
 
@@ -27,20 +24,27 @@ public class Lexer {
 	int eofMark = 0;
 	char prevChar;
 	
+	//Constructor gets passed a bufferedreader which used to read program
 	public Lexer(BufferedReader file)
 	{
+		//store tokens in an arraylist
 		tokens = new ArrayList<Token>();
 		this.file = file;
 	}
 	
+	//Main driver of lexical analyzer. Reads each token char by char
 	public void analyzeProgram() throws IOException
 	{
+		//for some reason the buffer usess 65535 as the eof mark
 		while(eofMark != 65535)
 		{
 			tokens.add(nextToken());
 		}
 	}
 	
+	
+	//This method is where the lexical analyzr reads the file char by char and creates the tokens
+	//this can be consider the finite state machine portion of the program
 	public  Token nextToken() throws IOException
 	{
 		String temp = "";
@@ -58,12 +62,15 @@ public class Lexer {
 		}
 		
 		
+		//if the token is a delimiter
 		if(Token.isDel(val))
 		{
+			//if the double quotation is found then we know that it is a string literal
 			if(val == '"')
 			{
 				temp += val;
 				val = (char) file.read();
+				//append each char to temp until we get to the closing double quotes
 				while(val != '"')
 				{
 					temp += val;
@@ -74,7 +81,7 @@ public class Lexer {
 				
 				curr.setString(temp);
 				return curr;
-			}
+			}//end if
 			
 			curr.setDelToken(val);
 			return curr;
@@ -85,28 +92,37 @@ public class Lexer {
 			//check for negative numbers
 			if(val == '-')
 			{
+				//if the next character is a nummber we can assume that it is a negative int or float
 				if(nextChar() == 4 )
 				{
 					temp += val;
 					
 					val = (char) file.read();
-					file.mark(BUFFER_MARK);
+					file.mark(BUFFER_MARK); //mark current spot in buffer incase we need to roll back
+					
+					//read all chars while they are digit
 					while(Character.isDigit(val))
 					{
 						temp += val;
 						val = (char) file.read();
 					}
 					
+					//if there is a period next to the digits we assume that it is a floating point numbe
 					if(val == '.')
 					{
 						temp += val;
 						val = (char) file.read();
+						
+						//appends all numbers after the period to string
 						while(Character.isDigit(val))
 						{
 							temp+= val;
 							val = (char) file.read();
 						}
 					}
+					
+					curr.setNumToken(temp);
+					return curr;
 					
 				}
 			}
@@ -118,27 +134,34 @@ public class Lexer {
 				temp += (char) file.read();
 				curr.setOpToken(temp);
 			}
+			//otherwise we can set the token as being a single char operator
 			else
 			{
 			curr.setOpToken(val);
 			return curr;
 			}
 		}
+		//creates a token for float or integer if a digit is found
 		else if(Character.isDigit(val)) 
 		{
 			
 			temp += val;
 			val = (char) file.read();
+			
+			//add all digits to string
 			while(Character.isDigit(val))
 			{
 				temp += val;
 				val = (char) file.read();
 			}
 			
+			//if a period is directly after a number assume that this number is a float
 			if(val == '.')
 			{
 				temp += val;
 				val = (char) file.read();
+				
+				//append all numbers after period
 				while(Character.isDigit(val))
 				{
 					temp+= val;
@@ -149,7 +172,7 @@ public class Lexer {
 			curr.setNumToken(temp);
 			return curr;
 		}
-		//checks for keywords
+		//if the char read is a letter we know it must either be a keyword or a usermade identifier
 		else if(Character.isLetter(val))
 		{
 			temp += val;
@@ -167,10 +190,11 @@ public class Lexer {
 		return curr;
 	}
 	
-	//check if the next char in the buffered stream is an operator
+	//nextChar() peeks ahead in the buffer to examine the next character
 	//returns 1 if the next character in the buffer is an operator
 	//returns 2 if the next character is a /, indicating a comment
-	//returns 3 if the next charatcter is a letter
+	//returns 3 if the next character is a letter
+	//returns 4 if the next character i a digit
 	//otherwise returns 0 if 
 	public int nextChar() throws IOException
 	{
@@ -183,7 +207,7 @@ public class Lexer {
 			file.reset();
 			return 1;
 		}
-		if(val == '/')
+		if(val == '/')   //todo
 		{
 			file.reset();
 			return 2;
@@ -214,7 +238,7 @@ public class Lexer {
 		{
 			if(tokens.get(i).lexeme.equals(""))
 			{
-				//I cant figure out why it keeps adding some blank lexemes so just skip for now
+				//I cant figure out why it keeps adding some blank lexemes so just skip them for now
 			}
 			else
 			{

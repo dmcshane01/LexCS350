@@ -10,5 +10,7 @@ quot = quot + 1};
 write("quotient = ", quot);
 write("remainder = ", rem);
 float test = 8.5;
+
+int testt = -3;
 };
 end

@@ -62,5 +62,9 @@ FLOAT_DEC	float
 Identifier	test
 ASSIGN_OP	=
 FLOAT		8.5
+INT_DEC		int
+Identifier	testt
+ASSIGN_OP	=
+INT		-3
 DELIMITER	}
 PROGRAM_END	end
