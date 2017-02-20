@@ -22,6 +22,7 @@ public class Lexer {
 	BufferedReader file;
 	ArrayList<Token> tokens;
 	int eofMark = 0;
+	char prevChar;
 	
 	public Lexer(BufferedReader file)
 	{
@@ -78,7 +79,34 @@ public class Lexer {
 		else if(Token.isOp(val)) //need to check if its a negative number or a double symbol op(!=, >=, etc)
 		{
 			
-			
+			//check for negative numbers
+			if(val == '-')
+			{
+				if(nextChar() == 4 )
+				{
+					temp += val;
+					
+					val = (char) file.read();
+					file.mark(BUFFER_MARK);
+					while(Character.isDigit(val))
+					{
+						temp += val;
+						val = (char) file.read();
+					}
+					
+					if(val == '.')
+					{
+						temp += val;
+						val = (char) file.read();
+						while(Character.isDigit(val))
+						{
+							temp+= val;
+							val = (char) file.read();
+						}
+					}
+					
+				}
+			}
 			//if the next character is an operator, we check to see if its a logical operator that has 2 chars
 			//if it is, appen both to an empty string
 			if(nextChar() == 1)
@@ -93,7 +121,7 @@ public class Lexer {
 			return curr;
 			}
 		}
-		else if(Character.isDigit(val)) //need to check for floats, etc
+		else if(Character.isDigit(val)) 
 		{
 			
 			temp += val;
@@ -101,7 +129,22 @@ public class Lexer {
 			while(Character.isDigit(val))
 			{
 				temp += val;
+				val = (char) file.read();
 			}
+			
+			if(val == '.')
+			{
+				temp += val;
+				val = (char) file.read();
+				while(Character.isDigit(val))
+				{
+					temp+= val;
+					val = (char) file.read();
+				}
+			}
+			
+			curr.setNumToken(temp);
+			return curr;
 		}
 		//checks for keywords
 		else if(Character.isLetter(val))
@@ -146,6 +189,11 @@ public class Lexer {
 		{
 			file.reset();
 			return 3;
+		}
+		if(Character.isDigit(val))
+		{
+			file.reset();
+			return 4;
 		}
 		
 		file.reset(); //reset buffer back to original spot

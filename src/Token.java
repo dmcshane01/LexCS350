@@ -3,7 +3,7 @@ public class Token {
 	
 	final static char[] OPERATORS = {'+', '=', '-', '*', '/', '!', '<', '>'};
 	final static char[] DELIMITERS = {'(', ')', '{', '}', ']', '[', '"',',' };
-	final static String[] KEYWORDS = {"main", "end", "begin", "char", "int", "float", "if", "else", "while", "read" }; //add more 
+	final static String[] KEYWORDS = {"main", "end", "begin", "char", "int", "float", "if", "else", "while", "read", "float" }; //add more 
 	
 	
 	String token = "";
@@ -121,15 +121,25 @@ public class Token {
 		}
 	}
 	
+	//creates token for int or float
+	public void setNumToken(String val)
+	{
+	
+		token = "INT";
+		lexeme = val;
+		//search each char in string for a period, if so set token to FLOAT
+		for(int i = 0; i < val.length(); i++)
+		{
+			if(val.charAt(i) == '.')
+			{
+				token = "FLOAT";
+			}
+		}
+	}
+	
 	public void setString(String val)
 	{
 		token = "STRING LITERAL";
-		lexeme = val;
-	}
-	
-	public void setNumToken(String val)
-	{
-		token = val;
 		lexeme = val;
 	}
 	
