@@ -12,6 +12,7 @@
 public class Token {
 	
 	//collection of legal operators, delimters and keywords
+	//These can also be considered the Regular Grammer of our programming language(Hopefully address 1.1 of the assignment)
 	final static char[] OPERATORS = {'+', '=', '-', '*', '/', '!', '<', '>'};
 	final static char[] DELIMITERS = {'(', ')', '{', '}', ']', '[', '"',',' };
 	final static String[] KEYWORDS = {"main","do", "end", "begin", "char", "int", "float", "if", 
