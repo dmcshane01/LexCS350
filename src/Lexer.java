@@ -210,12 +210,19 @@ public class Lexer {
 	public void outputTokens(String outputFile) throws IOException
 	{
 	
-		BufferedWriter bw = new BufferedWriter(new FileWriter("output.txt"));
+		BufferedWriter bw = new BufferedWriter(new FileWriter(outputFile));
+		bw.write("TOKEN:\t\tLEXEME\n");
 		for(int i = 0; i < tokens.size() - 1; i++)
 		{
-			System.out.println(i);
-			bw.write("test");
-			bw.write(tokens.get(i).toString());
+			if(tokens.get(i).lexeme.equals(""))
+			{
+				//I cant figure out why it keeps adding some blank lexemes so just skip for now
+			}
+			else
+			{
+				bw.write(tokens.get(i).toString() + "\n");
+				bw.flush();
+			}
 		}
 	}
 	

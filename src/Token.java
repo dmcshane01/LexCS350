@@ -45,7 +45,7 @@ public class Token {
 	//determines if a char is whitespace, such as /n /r /t
 	public static boolean isWhiteSpace(char value)
 	{
-		if(value == ' ' || value == '\n' || value == '\t')
+		if(Character.isWhitespace(value))
 		{
 			return true;
 		}
@@ -98,6 +98,10 @@ public class Token {
 				}
 				else if(val.equals("else"))
 				{
+					token = "ELSE_STMT";
+				}
+				else if(val.equals("do"))
+				{
 					token = "DO_STMT";
 				}
 				else if(val.equals("while"))
@@ -135,7 +139,7 @@ public class Token {
 			if(DELIMITERS[i] == val)
 			{
 				//need to change to proper token/lexeme
-				token += val;
+				token = "DELIMITER";
 				lexeme += val;
 			}
 		}
@@ -186,6 +190,7 @@ public class Token {
 			//do not need to check the first char because the first op must be a valid op to get to this point
 			for(int i = 0; i < OPERATORS.length; i++)
 			{
+				//may need to add +=, ++, etc, not sure if required
 				if(OPERATORS[i] == (val.charAt(1))) //check if the second char in double operator is correct
 				{
 		
@@ -250,7 +255,14 @@ public class Token {
  */
 	public String toString()
 	{
-		return token + "  " + lexeme;
+		//if the lexeme or token matches case, add extra tab for consistent formatting on output
+		if(token.equals("INT") || token.equals("FLOAT") || Character.isDigit(token.charAt(0))
+				|| lexeme.equals("if") || lexeme.equals("int") || lexeme.equals("+") || lexeme.equals("-") 
+				|| lexeme.equals("do"))
+		{
+			return token + "\t\t" + lexeme;
+		}
+		return token + "\t" + lexeme;
 	}
 }
 
