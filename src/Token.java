@@ -147,9 +147,32 @@ public class Token {
 		{
 			if(OPERATORS[i] == val)
 			{
-				//need to change to proper token/lexeme
-				token += val;
 				lexeme += val;
+				
+				if(val == '=')
+				{
+					token = "ASSIGN_OP";
+				}
+				else if(val == '+')
+				{
+					token = "ADD_OP";
+				}
+				else if(val == '-')
+				{
+					token = "SUB_OP";
+				}
+				else if(val == '*')
+				{
+					token = "MULT_OP";
+				}
+				else if(val == '/')
+				{
+					token = "DIV_OP";
+				}
+				else if(val == '!')
+				{
+					token = "NEGATE_OP";
+				}
 			}
 		}
 	}
@@ -159,15 +182,34 @@ public class Token {
 	public void setOpToken(String val)
 	{
 	
+			//loops through all operators and checks that the second char is a valid op char
+			//do not need to check the first char because the first op must be a valid op to get to this point
 			for(int i = 0; i < OPERATORS.length; i++)
-		{
-			if(OPERATORS[i] == (val.charAt(1))) //check if the second char in double operator is correct
 			{
+				if(OPERATORS[i] == (val.charAt(1))) //check if the second char in double operator is correct
+				{
+		
+					lexeme = val;
+					
+					if(val.equals(">="))
+					{
+						token = "GREATER_OP";
+					}
+					else if(val.equals("<="))
+					{
+						token = "LESS_OP";
+					}
+					else if(val.equals("=="))
+					{
+						token = "EQUAL_OP";
+					}
+					else if(val.equals("!="))
+					{
+						token = "LOGNOT_OP";
+					}
+					
+			}//end outer if
 				
-				//need to change to proper token/lexeme
-				token = val;
-				lexeme = val;
-			}
 		}
 	}
 	
