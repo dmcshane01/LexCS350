@@ -178,6 +178,7 @@ public class Lexer {
 			temp += val;
 
 			
+			//while the nextchar is still a letter continue adding it to sring
 			while(nextChar() == 3)
 			{
 				val = (char) file.read();
@@ -229,11 +230,14 @@ public class Lexer {
 		
 	}
 	
+	
+	//write all tokens and lexems to a file using the bufferedwriter
+	//takes the filename/path as the parameter
 	public void outputTokens(String outputFile) throws IOException
 	{
 	
 		BufferedWriter bw = new BufferedWriter(new FileWriter(outputFile));
-		bw.write("TOKEN:\t\tLEXEME\n");
+		bw.write("TOKEN:\t\tLEXEME\n");//header
 		for(int i = 0; i < tokens.size() - 1; i++)
 		{
 			if(tokens.get(i).lexeme.equals(""))
