@@ -1,0 +1,17 @@
+main
+begin
+int i;
+
+for(int i = 0; i <= 10; i++)
+{
+    if(i==2){
+	write("i does not equal 2");
+    }
+    else{
+       write(" i = 2");
+    }
+
+}
+
+int longvarname = -9729312312;
+float floatname = -12342.6432;
