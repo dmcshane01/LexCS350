@@ -1,16 +1,17 @@
 main
 begin
-int num, denom, quot, rem;
-read num, denom;
-if denom = 0 then write ( "the denominator has an invalid value 0!");
-else {rem = num; quit = 0;
-while rem >= denom do{
-rem = rem - denom;
-quot = quot + 1};
-write("quotient = ", quot);
-write("remainder = ", rem);
-float test = 8.5;
+int i;
 
-int testt = -3;
-};
-end
+for(int i = 0; i <= 10; i++)
+{
+    if(i==2){
+	write("i does not equal 2");
+    }
+    else{
+       write(" i = 2");
+    }
+
+}
+
+int longvarname = -9729312312;
+float floatname = -12342.6432;

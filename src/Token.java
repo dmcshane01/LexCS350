@@ -78,8 +78,8 @@ public class Token {
 				//if the string val s equal to a keyword, mark the key flag as true and find the correct token
 				lexeme = val;
 				key = true;
-				
-				//long if else statement, switch/case not working for strings
+
+			
 				if(val.equals("main"))
 				{
 					token = "PROGRAM_START";
