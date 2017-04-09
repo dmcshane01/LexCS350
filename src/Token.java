@@ -14,7 +14,7 @@ public class Token {
 	//collection of legal operators, delimters and keywords
 	//These can also be considered the Regular Grammer of our programming language(Hopefully address 1.1 of the assignment)
 	final static char[] OPERATORS = {'+', '=', '-', '*', '/', '!', '<', '>'};
-	final static char[] DELIMITERS = {'(', ')', '{', '}', ']', '[', '"',',' };
+	final static char[] DELIMITERS = {'(', ')', '{', '}', ']', '[', '"',',', ';' };
 	final static String[] KEYWORDS = {"main","do", "end", "begin", "char", "int", "float", "if", 
 			 "else", "while", "read", "float", "for", "write" }; //add more as needed
 	
@@ -39,6 +39,7 @@ public class Token {
 	//determines if a char is a delimiter
 	public static boolean isDel(char value)
 	{
+		
 		for(int i = 0; i < DELIMITERS.length; i++)
 		{
 			if(value == DELIMITERS[i])
@@ -147,6 +148,12 @@ public class Token {
 	//sets the token for a delimeters using the ambiguous DELIMITER tag for the token name
 	public void setDelToken(char val)
 	{
+		if(val == ';')
+		{
+			token = "END_DEL";
+			lexeme += val;
+			return;
+		}
 		for(int i = 0; i < DELIMITERS.length; i++)
 		{
 			if(DELIMITERS[i] == val)
@@ -268,6 +275,13 @@ public class Token {
 			return token + "\t\t" + lexeme;
 		}
 		return token + "\t" + lexeme;
+	}
+	
+	//output for syntax analyzer
+	public String syntaxToString()
+	{
+		return token;
+	
 	}
 }
 

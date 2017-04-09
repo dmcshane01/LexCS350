@@ -250,6 +250,21 @@ public class Lexer {
 				bw.flush();
 			}
 		}
+		
+		 bw = new BufferedWriter(new FileWriter("semFile.txt"));
+		
+		for(int i = 0; i < tokens.size() - 1; i++)
+		{
+			if(tokens.get(i).lexeme.equals(""))
+			{
+				//I cant figure out why it keeps adding some blank lexemes so just skip them for now
+			}
+			else
+			{
+				bw.write(tokens.get(i).syntaxToString() + "\n");
+				bw.flush();
+			}
+		}
 	}
 	
 	
