@@ -284,7 +284,7 @@ public class Token {
 	//Set token for String literal
 	public void setString(String val)
 	{
-		token = "STRING LITERAL";
+		token = "STR_LIT";
 		lexeme = val;
 	}
 	

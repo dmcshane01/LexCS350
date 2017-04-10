@@ -101,6 +101,48 @@ public class SyntaxAnalyzer {
 		} //end of int/float/char assignment check
 		
 		
+		//analyze syntax of read function
+		if(temp.equals("READ_FUNC"))
+		{
+			temp = next();
+			
+			//because read can be in parantheses or not in parentheses, check that it has an open par or an ID
+			if(temp.equals("OPEN_PAR") || temp.equals("ID"))
+			{
+				//if so loop through all identifiers being read
+				while(temp.equals("ID"))
+				{
+					temp = next();
+				}
+				
+				//next token that is not an ID must be a closing parentheses or and ending delimiter, if not syntax error
+				if(!temp.equals("CLOSE_PAR") || !temp.equals("END_DEL"))
+				{
+					System.out.println("SYNTAX ERROR");
+				}
+			}
+			
+		}
+		
+		//analyze syntax of write function
+		if(temp.equals("WRITE_FUNC"))
+		{
+			temp = next();
+			if(temp.equals("OPEN_PAR"))
+			{
+				temp = next();
+				if(temp.equals("STR_LIT"))
+				{
+					temp = next();
+					if(temp.equals("CLOSE_PAR"))
+					{
+						
+					}
+					
+				}
+			}
+		}
+		
 		return null;
 	}
 }

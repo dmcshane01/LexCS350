@@ -14,6 +14,7 @@ public class Main {
 		Lexer lex = new Lexer(r);
 		lex.analyzeProgram();
 		lex.outputTokens("output.txt");
+		System.out.println("Fin");
 
 	}
 
