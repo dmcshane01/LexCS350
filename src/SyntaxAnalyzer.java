@@ -63,12 +63,44 @@ public class SyntaxAnalyzer {
 	public String nextStatement() throws IOException
 	{
 		String temp = next();
+		String output = "";
+		
 		
 		//if the first token is int/float/char then it must be an assignment
 		if(temp.equals("INT_DEC") || temp.equals("FLOAT_DEC")|| temp.equals("CHAR_DEC") )
 		{
+			temp = next();
 			
-		}
+			output += "(" + temp + ")";
+			//if the assignment is simple int = 5
+			if(temp.equals("ASSIGN_OP"))
+			{
+				output += "=";
+				temp = next();
+				if(temp.equals( "INT" )|| temp.equals("FLOAT") || temp.equals("CHAR"))
+				{
+					output += temp;
+					temp = next();
+					
+					if(!temp.equals("END_DEL"))
+					{
+						output = "SYNTAX ERROR";
+					}
+				}
+			}
+			while(temp.equals("ID"))
+			{
+				output +=  "(" + temp + ")";
+				temp = next();
+			}
+			
+			if(!temp.equals("END_DEL"))
+			{
+				output = "SYNTAX ERROR";
+			}
+		} //end of int/float/char assignment check
+		
+		
 		return null;
 	}
 }
