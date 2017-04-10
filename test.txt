@@ -10,5 +10,6 @@ else	{ rem :=  num; quot := 0;
  quot := quot + 1;};
 write ("quotient = ", quot);
 write ("remainder = ", rem); };
+String 420
 return 0; 
 }

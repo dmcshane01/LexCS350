@@ -60,18 +60,20 @@ CLOSE_CURBRACK	}
 END_DEL	;
 WRITE_FUNC	write
 OPEN_PAR	(
-STRING LITERAL	"quotient = "
+STR_LIT	"quotient = "
 ID	quot
 CLOSE_PAR	)
 END_DEL	;
 WRITE_FUNC	write
 OPEN_PAR	(
-STRING LITERAL	"remainder = "
+STR_LIT	"remainder = "
 ID	rem
 CLOSE_PAR	)
 END_DEL	;
 CLOSE_CURBRACK	}
 END_DEL	;
+ID	String
+INT		420
 ID	return
 INT		0
 CLOSE_CURBRACK	}

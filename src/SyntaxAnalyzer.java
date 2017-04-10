@@ -40,13 +40,13 @@ public class SyntaxAnalyzer {
 	{
 		String temp;
 		temp = next();
-		if(temp == "OPEN_PAR")
+		if(temp.equals("OPEN_PAR"))
 		{
-			if(temp == "ID")
+			if(temp.equals("ID"))
 			{
-				if(temp == "CLOSE_PAR")
+				if(temp.equals("CLOSE_PAR"))
 				{
-					if(temp == "OPEN_CURBRACK")
+					if(temp.equals("OPEN_CURBRACK"))
 					{
 						//if it reaches this point then main was used properly
 						return true;
@@ -57,5 +57,18 @@ public class SyntaxAnalyzer {
 		
 		//if main wasn't correct return false
 		return false;
+	}
+	
+	//nextStatement gets the next token and tries to deduce which type of statement 
+	public String nextStatement() throws IOException
+	{
+		String temp = next();
+		
+		//if the first token is int/float/char then it must be an assignment
+		if(temp.equals("INT_DEC") || temp.equals("FLOAT_DEC")|| temp.equals("CHAR_DEC") )
+		{
+			
+		}
+		return null;
 	}
 }
