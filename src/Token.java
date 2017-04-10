@@ -127,11 +127,11 @@ public class Token {
 				}
 				else if(val.equals("read"))
 				{
-					token = "FUNC_CALL";
+					token = "READ_FUNC";
 				}
 				else if(val.equals("write"))
 				{
-					token = "FUNC_CALL";
+					token = "WRITE_FUNC";
 				}
 			}//end outer if
 		}//end for
@@ -139,7 +139,7 @@ public class Token {
 		//if no keyword is found, assume that it is a variablie identifier
 		if(!key)
 		{
-			token = "Identifier";
+			token = "ID";
 			lexeme = val;
 		}
 		
@@ -148,21 +148,45 @@ public class Token {
 	//sets the token for a delimeters using the ambiguous DELIMITER tag for the token name
 	public void setDelToken(char val)
 	{
+		
 		if(val == ';')
 		{
 			token = "END_DEL";
 			lexeme += val;
 			return;
 		}
-		for(int i = 0; i < DELIMITERS.length; i++)
+		else if(val == '(')
 		{
-			if(DELIMITERS[i] == val)
-			{
-				//need to change to proper token/lexeme
-				token = "DELIMITER";
-				lexeme += val;
-			}
+			token = "OPEN_PAR";
+			lexeme += val;
 		}
+		else if(val == ')')
+		{
+			token = "CLOSE_PAR";
+			lexeme += val;
+		}
+		else if(val == '{')
+		{
+			token = "OPEN_CURBRACK";
+			lexeme += val;
+		}
+		else if(val == '}')
+		{
+			token = "CLOSE_CURBRACK";
+			lexeme += val;
+		}
+		else if(val == '[')
+		{
+			token = "OPEN_BRACK";
+			lexeme += val;
+		}
+		else if(val == ']')
+		{
+			token = "CLOSE_BRACK";
+			lexeme += val;
+		}
+		
+		
 	}
 	
 	//Set the Token as an operator for single character operators
