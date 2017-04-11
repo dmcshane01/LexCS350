@@ -143,6 +143,30 @@ public class SyntaxAnalyzer {
 			}
 		}
 		
+		if(temp.equals("WHILE_LOOP"))
+		{
+			temp = next();
+			if(temp.equals("ID"))
+			{
+				if(temp.equals("EQUAL_OP") ||temp.equals("GREATER_OP") || temp.equals("LESS_OP") || temp.equals("LOGNOT_OP"))
+				{
+					if(temp.equals("ID") || temp.equals("INT") || temp.equals("FLOAT"))
+					{
+						//valid
+					}
+				}
+			}
+		}
+		if(temp.equals("DO_STMT"))
+		{
+			temp = next();
+			if(temp.equals("OPEN_CURBRACK"))
+			{
+				
+			}
+			
+		}
+		
 		return null;
 	}
 }

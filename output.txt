@@ -42,7 +42,7 @@ ASSIGN_OP	=
 INT		0
 WHILE_LOOP	while
 ID	rem
-ASSIGN_OP	=
+EQUAL_OP	==
 ID	denom
 DO_STMT		do
 OPEN_CURBRACK	{

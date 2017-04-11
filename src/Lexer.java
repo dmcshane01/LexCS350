@@ -83,12 +83,13 @@ public class Lexer {
 				return curr;
 			}//end if
 			
+			
 			curr.setDelToken(val);
 			return curr;
 		}
 		else if(Token.isOp(val)) //need to check if its a negative number or a double symbol op(!=, >=, etc)
 		{
-			
+			System.out.println(val);
 			//check for negative numbers
 			if(val == '-')
 			{
@@ -133,6 +134,7 @@ public class Lexer {
 				temp += val;
 				temp += (char) file.read();
 				curr.setOpToken(temp);
+				return curr;
 			}
 			//otherwise we can set the token as being a single char operator
 			else
