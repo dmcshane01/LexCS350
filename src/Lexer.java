@@ -89,7 +89,7 @@ public class Lexer {
 		}
 		else if(Token.isOp(val)) //need to check if its a negative number or a double symbol op(!=, >=, etc)
 		{
-			System.out.println(val);
+			
 			//check for negative numbers
 			if(val == '-')
 			{

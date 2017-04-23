@@ -17,7 +17,7 @@ ID	denom
 END_DEL	;
 IF_STMT		if
 ID	denom
-ASSIGN_OP	=
+EQUAL_OP	==
 INT		0
 ID	then
 WRITE_FUNC	write

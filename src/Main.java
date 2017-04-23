@@ -14,8 +14,15 @@ public class Main {
 		Lexer lex = new Lexer(r);
 		lex.analyzeProgram();
 		lex.outputTokens("output.txt");
-		System.out.println("Fin");
+		System.out.println("Finish lexical analyzer");
+		
+		r = new BufferedReader(new FileReader("semFile.txt"));
 
+		SyntaxAnalyzer sa = new SyntaxAnalyzer(r);
+		System.out.println("STATEMENT: " + sa.nextStatement());
+		System.out.println("STATEMENT: " + sa.nextStatement());
+		System.out.println("STATEMENT: " + sa.nextStatement());
+		
 	}
 
 }
