@@ -3,13 +3,12 @@ int main(void)
 int num, denom, quot, rem;
 read num, denom;
 if denom == 0 
-then write ( “the denominator has an invalid value 0!);
-else	{ rem =  num; quot = 0;
-   while rem == denom do 
- 	{rem := rem – denom; 
+then write ( "the denominator has an invalid value 0!");
+else	{ rem =  num; quot = 0 ; 
+   while rem == denom do
+ 	{rem = rem  - denom; 
  quot = quot + 1;};
 write ("quotient = ", quot);
 write ("remainder = ", rem); };
-String 420
 return 0; 
 }

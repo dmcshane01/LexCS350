@@ -19,16 +19,10 @@ IF_STMT		if
 ID	denom
 EQUAL_OP	==
 INT		0
-ID	then
+ELSE_STMT	then
 WRITE_FUNC	write
 OPEN_PAR	(
-ID	the
-ID	denominator
-ID	has
-ID	an
-ID	invalid
-ID	value
-INT		0
+STR_LIT	"the denominator has an invalid value 0!"
 CLOSE_PAR	)
 END_DEL	;
 ELSE_STMT	else
@@ -40,6 +34,7 @@ END_DEL	;
 ID	quot
 ASSIGN_OP	=
 INT		0
+END_DEL	;
 WHILE_LOOP	while
 ID	rem
 EQUAL_OP	==
@@ -49,6 +44,7 @@ OPEN_CURBRACK	{
 ID	rem
 ASSIGN_OP	=
 ID	rem
+SUB_OP		-
 ID	denom
 END_DEL	;
 ID	quot
@@ -72,8 +68,6 @@ CLOSE_PAR	)
 END_DEL	;
 CLOSE_CURBRACK	}
 END_DEL	;
-ID	String
-INT		420
-ID	return
+RETURN_STMT	return
 INT		0
 CLOSE_CURBRACK	}
