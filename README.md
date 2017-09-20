@@ -1,2 +1,2 @@
 # LexCS350
-Simple Lexical Analyzer
+Lexical and Syntax Analyzer for a simple programming language
